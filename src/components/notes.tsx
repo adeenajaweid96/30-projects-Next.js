@@ -59,6 +59,28 @@ function useLocalStorage<T>(key:string, initialValue:T){
 }
 
 const notes = () => {
+    const [notes, setNotes] = useLocalStorage<Notes[]>("notes",defaultNotes);
+
+    const [newNotes, setNewNotes] = useState<{title: string , content : string}>({
+        title:"",
+        content: "",
+    });
+
+    const [editNotesId, setEditNotesId] = useState<number | null>(null);
+
+    const [isMounted, setIsMounted] = useState<boolean>(false);
+
+    useEffect(()=>{
+        setIsMounted(true);
+    },[]);
+
+    const handleAddNotes = (): void =>{
+        if(newNotes.title.trim() && newNotes.content.trim()){
+            const newNoteswithId = {id: Date.now() , ...newNotes};
+            setNotes([...notes, newNoteswithId])
+            setNewNotes({title:"", content: ""});
+        }
+    };
     
   return (
     <div>
