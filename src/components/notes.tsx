@@ -81,7 +81,29 @@ const notes = () => {
             setNewNotes({title:"", content: ""});
         }
     };
-    
+
+    const handleEditNote = (id:number) : void =>{
+        const noteToEdit = notes.find((note) => note.id === id);
+        if(noteToEdit){
+            setNewNotes({title: noteToEdit.title , content: noteToEdit.content} );
+            setEditNotesId(id);
+        }
+    };
+
+    const handleUpdateNote= (): void =>{
+        if(newNotes.title.trim() && newNotes.content.trim()){
+        setNotes(
+            notes.map((note) => 
+            note.id === editNotesId ? 
+            {id : note.id , title: newNotes.title , content: newNotes.content}
+            :note
+            )
+        );
+        setNewNotes({title : "" , content : ""});
+        setEditNotesId(null);
+    }
+}
+
   return (
     <div>
       
