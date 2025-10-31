@@ -102,6 +102,10 @@ const notes = () => {
         setNewNotes({title : "" , content : ""});
         setEditNotesId(null);
     }
+};
+
+if(!isMounted){
+    return (null);
 }
 
   return (
