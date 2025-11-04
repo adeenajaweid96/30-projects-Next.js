@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react"
 
+import { FilePenIcon, TrashIcon } from "lucide-react";
 
 type Notes = {
     id:number;
@@ -109,9 +110,7 @@ if(!isMounted){
 }
 
   return (
-    <div>
-      
-    </div>
+<div></div>
   )
 }
 
