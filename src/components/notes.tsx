@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react"
 
-import { FilePenIcon, TrashIcon } from "lucide-react";
+// import { FilePenIcon, TrashIcon } from "lucide-react";
 
 type Notes = {
     id:number;
@@ -110,7 +110,24 @@ if(!isMounted){
 }
 
   return (
-<div></div>
+<div className="flex flex-col h-screen bg-background text-foreground">
+    <header className="bg-muted p-4 shadow">
+        <h1 className="text-2xl font-bold">Note Taker</h1>
+    </header>
+    <main className="flex-1 overflow-auto p-4">
+        <div className="mb-4">
+            <input type="text" placeholder="Title" value={newNotes.title || ""}
+            onChange={(e) => setNewNotes({...newNotes, title: e.target.value})}
+            className="w-full rounded-md border border-input bg-background p-2 text-foreground focus:outline-none focus:ring-1 focus:ring-primary"/>
+            <textarea placeholder="content"  value={newNotes.content || ""} 
+            onChange={(e) => setNewNotes({...newNotes, content: e.target.value})
+            } className="mt-2 w-full rounded-md border border-input bg-background p-2 text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+            rows={4}/>
+             </div>
+
+    </main>
+
+</div>
   )
 }
 
